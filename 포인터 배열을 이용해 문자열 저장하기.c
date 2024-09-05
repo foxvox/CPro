@@ -2,17 +2,24 @@
 
 void main()
 {
+	char* ptrArray[2]; 
+	char** ptrptr; 
 	int i; 
-	char* ptrArray[4] = { {"Korea"}, {"Seoul"}, {"Mapo"}, {"152번지  2 / 3"} }; 
-	
-	for (i = 0; i < 4; i++) 
-		printf("\n %s", ptrArray[i]); 
 
-	ptrArray[2] = "Jongno"; 
-	printf("\n\n"); 
+	ptrArray[0] = "Korea"; 
+	ptrArray[1] = "Seoul"; 
 
-	for (i = 0; i < 4; i++)
-		printf("\n %s", ptrArray[i]); 
+	ptrptr = ptrArray; 
+
+	printf("\n ptrArray[0]의 주소 (&ptrArray[0]) = %u", &ptrArray[0]); 
+	printf("\n ptrArray[0]의 값 (ptrArray[0]) = %u", ptrArray[0]);
+	printf("\n ptrArray[0]의 참조값 (*ptrArray[0]) = %c", &ptrArray[0]);
+	printf("\n ptrArray[0]의 참조 문자열 (*ptrArray[0]) = %s \n", &ptrArray);
+
+	printf("\n ptrArray[1]의 주소 (&ptrArray[1]) = %u", &ptrArray[0]);
+	printf("\n ptrArray[1]의 값 (ptrArray[1]) = %u", ptrArray[1]);
+	printf("\n ptrArray[1]의 참조값 (*ptrArray[1]) = %c", &ptrArray[0]);
+	printf("\n ptrArray[1]의 참조 문자열 (*ptrArray[1]) = %s \n", *(ptrArray + 1)); 
 
 	getchar(); 
 }

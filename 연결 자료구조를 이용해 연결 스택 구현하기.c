@@ -2,7 +2,7 @@
 #include <stdlib.h> 
 #include <string.h> 
 
-typedef char element; 
+typedef int element; 
 
 typedef struct stackNode
 {
@@ -72,63 +72,38 @@ void printStack()
 	printf("]"); 
 }
 
-int testPair(char* exp)
-{
-	char symbol, open_pair; 
-
-	int i, length = strlen(exp); 
-	top = NULL; 
-
-	for (i = 0; i < length; i++)
-	{
-		symbol = exp[i]; 
-		switch (symbol)
-		{
-		case '(': 
-		case '[':
-		case '{':
-			push(symbol); 
-			break; 
-		case ')':
-		case ']':
-		case '}':
-			if (top == NULL)
-			{
-				return 0; 
-			}				 
-			else
-			{
-				open_pair = pop(); 
-				if ((open_pair == '(' && symbol != ')') ||
-					(open_pair == '[' && symbol != ']') ||
-					(open_pair == '{' && symbol != '}'))
-				{
-					return 0; 
-				}					
-				else
-				{
-					break; 
-				}
-					 
-			}
-		}
-	}
-
-	if (top == NULL)
-		return 1;
-	else
-		return 0; 	
-}
-
 void main()
 {
-	char* express = "{(A+B)-3}*5+[{cos(x+y)+7}-1]*4"; 
-	printf("%s", express); 
+	element item; 
+	top = NULL; 
+	printf("\n** 연결 스택 연산 **\n"); 
+	
+	printStack(); 
+	
+	push(1); 
+	printStack(); 
 
-	if (testPair(express) == 1)
-		printf("\n\n 수식의 괄호가 맞게 사용되었습니다.");
-	else
-		printf("\n\n 수식의 괄호가 틀렸습니다!"); 
+	push(2); 
+	printStack(); 
+
+	push(3); 
+	printStack(); 
+
+	item = peek(); 
+	printStack(); 
+	printf("\t peek => %d", item); 
+
+	item = pop(); 
+	printStack(); 
+	printf("\t pop => %d", item); 
+
+	item = pop();
+	printStack();
+	printf("\t pop => %d", item);
+
+	item = pop();
+	printStack();
+	printf("\t pop => %d", item);
 
 	getch(); 
 }
